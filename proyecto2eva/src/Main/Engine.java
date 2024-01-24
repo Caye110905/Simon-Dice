@@ -73,16 +73,16 @@ public class Engine {
 		tColores posicion = null;
 		
 		switch (_numero) {
-		case '0':
+		case 0:
 			posicion = tColores.Rojo;
 			break;
-		case '1':
+		case 1:
 			posicion = tColores.Azul;
 			break;
-		case '2':
+		case 2:
 			posicion = tColores.Verde;
 			break;
-		case '3':
+		case 3:
 			posicion = tColores.Dorado;
 			break;
 
@@ -127,7 +127,7 @@ public class Engine {
 	 */
 
 	public void mostrarSecuencia(int _numero) {
-		for (int i = 0; i < secuenciaColores.length; i++) {
+		for (int i = 0; i < _numero; i++) {
 			System.out.println(secuenciaColores[i] + " ");
 		}
 	}
@@ -168,11 +168,50 @@ public class Engine {
 	}
 
 	/**
-	 * Funcionamiento del juego.
+	 * Control del juego.
 	 */
 
 	public void play() {
 		
-	}
+		generarSecuencia(12);
 
+		for (int i = 0; i < MAX_COLORES_SEQ; i++) {
+
+		System.out.println("Pulsa ENTER para empezar a jugar");
+		new Scanner(System.in).nextLine();
+		for(int j = 0; j < 30; j++) {
+			System.out.println();
+		}
+		mostrarSecuencia(3 + i);
+		System.out.println();
+		
+		int numerosecuencia = i + 1;
+		
+		System.out.println("Presiona Enter cuando memorices la secuencia" + numerosecuencia);
+		new Scanner(System.in).nextLine();
+		
+		for (int n = 0; n < 30; n++) {
+			System.out.println();
+		}
+		
+		System.out.println("¿Cuál era la secuencia de colores?");
+		for (int k = 0; k < 3 + i; k++) {
+			System.out.println("Introduce el color en la posición " + (k + 1) + ": ");
+			char secuenciaUsuario = new Scanner(System.in).next().charAt(0);
+			tColores colorEscogido = charToColor(secuenciaUsuario);
+
+			if (comprobarColor(k, colorEscogido)) {
+				System.out.println("correcto, bien hecho");
+			} else {
+				System.out.println("Incorrecto, fin del juego");
+				menu();
+			}
+		}
+
+		while (i == MAX_COLORES_SEQ - 3) {
+			System.out.println("Has ganado, terminaste el juego");
+			menu();
+		}		
+      }
+   }
 }
