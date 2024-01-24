@@ -24,8 +24,8 @@ public class Engine {
 	 * Array donde se fija el numero maximo de secuencia de colores.
 	 */
 
-	static int MAX_COLORES_SEQ = 12;
-	static tColores[] secuenciaColores = new tColores[MAX_COLORES_SEQ];
+	int MAX_COLORES_SEQ = 12;
+	tColores[] secuenciaColores = new tColores[MAX_COLORES_SEQ];
 
 	/**
 	 * Este método lo utilizamos para saber cual es la primera letra de cada color
@@ -36,7 +36,7 @@ public class Engine {
 	 * @return
 	 */
 
-	private tColores charToColor(char _color) {
+	public tColores charToColor(char _color) {
 		tColores colores = null;
 		char letraColores = Character.toLowerCase(_color);
 		
@@ -69,7 +69,7 @@ public class Engine {
 	 * @return
 	 */
 
-	private tColores intToColor(int _numero) {
+	public tColores intToColor(int _numero) {
 		tColores posicion = null;
 		
 		switch (_numero) {
@@ -146,7 +146,6 @@ public class Engine {
 			play();
 		} else if (menu == 2) {
 			System.out.println("Salistes del juego");
-			start();
 		} else {
 			System.out.println("Número no disponible");
 			menu();
@@ -179,7 +178,7 @@ public class Engine {
 
 		System.out.println("Pulsa ENTER para empezar a jugar");
 		new Scanner(System.in).nextLine();
-		for(int j = 0; j < 30; j++) {
+		for(int j = 0; j < 15; j++) {
 			System.out.println();
 		}
 		mostrarSecuencia(3 + i);
