@@ -1,7 +1,7 @@
 package Main;
 
-import java.util.Random;
 import java.util.Scanner;
+import java.util.Random;
 
 /**
  * Simon dice, trabajo 2ª Evaluación
@@ -24,8 +24,8 @@ public class Engine {
 	 * Array donde se fija el numero maximo de secuencia de colores.
 	 */
 
-	public static int MAX_COLORES_SEQ = 12;
-	tColores[] secuenciaColores = new tColores[MAX_COLORES_SEQ];
+	static int MAX_COLORES_SEQ = 12;
+	static tColores[] secuenciaColores = new tColores[MAX_COLORES_SEQ];
 
 	/**
 	 * Este método lo utilizamos para saber cual es la primera letra de cada color
@@ -36,23 +36,29 @@ public class Engine {
 	 * @return
 	 */
 
-	public tColores charToColor(char _color) {
-		char _colores = 0;
-		char letraColores = Character.toLowerCase(_colores);
+	private tColores charToColor(char _color) {
+		tColores colores = null;
+		char letraColores = Character.toLowerCase(_color);
+		
 		switch (letraColores) {
 		case 'r':
-			return tColores.Rojo;
+			colores = tColores.Rojo;
+			break;
 		case 'v':
-			return tColores.Verde;
+			colores = tColores.Verde;
+			break;
 		case 'a':
-			return tColores.Azul;
+			colores = tColores.Azul;
+			break;
 		case 'd':
-			return tColores.Dorado;
+			colores = tColores.Dorado;
+			break;
+			
 		default:
 			System.out.println("Lo siento, has fallado el siguiente color");
 
 		}
-		return null;
+		return colores;
 	}
 
 	/**
@@ -63,22 +69,25 @@ public class Engine {
 	 * @return
 	 */
 
-	public tColores intToColor(int _numero) {
+	private tColores intToColor(int _numero) {
+		tColores posicion = null;
+		
 		switch (_numero) {
+		case '0':
+			posicion = tColores.Rojo;
+			break;
 		case '1':
-			return tColores.Rojo;
+			posicion = tColores.Azul;
+			break;
 		case '2':
-			return tColores.Azul;
+			posicion = tColores.Verde;
+			break;
 		case '3':
-			return tColores.Verde;
-		case '4':
-			return tColores.Dorado;
-
-		default:
-			System.out.println("Número sin encontrar");
+			posicion = tColores.Dorado;
+			break;
 
 		}
-		return null;
+		return posicion;
 	}
 
 	/**
@@ -89,7 +98,7 @@ public class Engine {
 	 */
 
 	public void generarSecuencia(int _numColores) {
-		for (int i = 0; i < _numColores; i++) {
+		for (int i = 0; i < secuenciaColores.length; i++) {
 			Random random = new Random();
 			int aleatorio = random.nextInt(0, 4);
 			secuenciaColores[i] = intToColor(aleatorio);
@@ -150,16 +159,16 @@ public class Engine {
 	 */
 
 	public void start() {
-		Scanner scanner = new Scanner(System.in);
 		System.out.println("Welcome to Simon Dice!");
 		System.out.println("What is your name? ");
+		Scanner scanner = new Scanner(System.in);
 		String persona = scanner.nextLine();
 		System.out.println("Hello " + persona + ", press ENTER to start playing");
 		menu();
 	}
 
 	/**
-	 * Funcionamiento del juego utilizando el método play.
+	 * Funcionamiento del juego.
 	 */
 
 	public void play() {
