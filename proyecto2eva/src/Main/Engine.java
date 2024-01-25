@@ -100,7 +100,7 @@ public class Engine {
 	public void generarSecuencia(int _numColores) {
 		for (int i = 0; i < secuenciaColores.length; i++) {
 			Random random = new Random();
-			int aleatorio = random.nextInt(0, 4);
+			int aleatorio = random.nextInt(0, 3);
 			secuenciaColores[i] = intToColor(aleatorio);
 
 		}
@@ -200,7 +200,7 @@ public class Engine {
 			tColores colorEscogido = charToColor(secuenciaUsuario);
 
 			if (comprobarColor(k, colorEscogido)) {
-				System.out.println("correcto, bien hecho");
+				System.out.println("Correcto, bien hecho");
 			} else {
 				System.out.println("Incorrecto, fin del juego");
 				menu();
