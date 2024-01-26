@@ -24,8 +24,8 @@ public class Engine {
 	 * Array donde se fija el numero maximo de secuencia de colores.
 	 */
 
-	int MAX_COLORES_SEQ = 12;
-	tColores[] secuenciaColores = new tColores[MAX_COLORES_SEQ];
+	private int MAX_COLORES_SEQ = 12;
+	private tColores[] secuenciaColores = new tColores[MAX_COLORES_SEQ];
 
 	/**
 	 * Este método lo utilizamos para saber cual es la primera letra de cada color
@@ -100,7 +100,7 @@ public class Engine {
 	public void generarSecuencia(int _numColores) {
 		for (int i = 0; i < secuenciaColores.length; i++) {
 			Random random = new Random();
-			int aleatorio = random.nextInt(0, 3);
+			int aleatorio = random.nextInt(0, 4);
 			secuenciaColores[i] = intToColor(aleatorio);
 
 		}
@@ -146,6 +146,7 @@ public class Engine {
 			play();
 		} else if (menu == 2) {
 			System.out.println("Salistes del juego");
+			menu();
 		} else {
 			System.out.println("Número no disponible");
 			menu();
@@ -173,44 +174,45 @@ public class Engine {
 	public void play() {
 		
 		generarSecuencia(12);
-
+		
 		for (int i = 0; i < MAX_COLORES_SEQ; i++) {
 
-		System.out.println("Pulsa ENTER para empezar a jugar");
-		new Scanner(System.in).nextLine();
-		for(int j = 0; j < 15; j++) {
-			System.out.println();
-		}
-		mostrarSecuencia(3 + i);
-		System.out.println();
-		
-		int numerosecuencia = i + 1;
-		
-		System.out.println("Presiona Enter cuando memorices la secuencia" + numerosecuencia);
-		new Scanner(System.in).nextLine();
-		
-		for (int n = 0; n < 30; n++) {
-			System.out.println();
-		}
-		
-		System.out.println("¿Cuál era la secuencia de colores?");
-		for (int k = 0; k < 3 + i; k++) {
-			System.out.println("Introduce el color en la posición " + (k + 1) + ": ");
-			char secuenciaUsuario = new Scanner(System.in).next().charAt(0);
-			tColores colorEscogido = charToColor(secuenciaUsuario);
-
-			if (comprobarColor(k, colorEscogido)) {
-				System.out.println("Correcto, bien hecho");
-			} else {
-				System.out.println("Incorrecto, fin del juego");
-				menu();
+			System.out.println("Pulsa ENTER para empezar a jugar");
+			new Scanner(System.in).nextLine();
+			for(int j = 0; j < 30; j++) {
+				System.out.println();
 			}
-		}
-
-		while (i == MAX_COLORES_SEQ - 3) {
-			System.out.println("Has ganado, terminaste el juego");
-			menu();
-		}		
+			
+			mostrarSecuencia(3 + i);
+			System.out.println();
+			
+			int numerosecuencia = i + 1;
+			
+			System.out.println("Presiona Enter cuando memorices la secuencia" + numerosecuencia);
+			new Scanner(System.in).nextLine();
+			
+			for (int n = 0; n < 30; n++) {
+				System.out.println();
+			}
+			
+			System.out.println("¿Cuál era la secuencia de colores?");
+			for (int k = 0; k < 3 + i; k++) {
+				System.out.println("Introduce el color en la posición " + (k + 1) + ": ");
+				char secuenciaUsuario = new Scanner(System.in).next().charAt(0);
+				tColores colorEscogido = charToColor(secuenciaUsuario);
+	
+				if (comprobarColor(k, colorEscogido)) {
+					System.out.println("Correcto, bien hecho");
+				} else {
+					System.out.println("Incorrecto, fin del juego");
+					menu();
+				}
+			}
+	
+			while (i == MAX_COLORES_SEQ - 3) {
+				System.out.println("Has ganado, terminaste el juego");
+				menu();
+			}		
       }
    }
 }
